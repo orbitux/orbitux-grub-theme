@@ -1,0 +1,15 @@
+# Backup Files
+.bak
+
+#Temorary Files
+*.tmp
+
+#MacOs
+.DS_Store
+
+#Linux
+*~
+
+#Editor
+.vscode/
+.idea/
