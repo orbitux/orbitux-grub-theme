@@ -1,0 +1,11 @@
+# orbitux grub theme
+# v0.3.0
+# Main Settings
+title-text: "WELCOME TO GRUB"
+title-color: "#FFFFFF"
+terminal-font: "Unifont Regular 16"
+terminal-left: "0"
+terminal-right: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
