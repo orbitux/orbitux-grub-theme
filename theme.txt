@@ -2,6 +2,7 @@
 # v0.3.0
 # Main Settings
 title-text: "WELCOME TO GRUB"
+desktop-image:"background.png"
 title-color: "#FFFFFF"
 terminal-font: "Unifont Regular 16"
 terminal-left: "0"
