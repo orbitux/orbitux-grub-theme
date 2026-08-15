@@ -85,6 +85,25 @@ backup_grub(){
     echo -e "${GREEN}[OK] Backup created: ${RESET_COLOR}"
     echo -e "Backup directory: ${ORANGE}$BACKUP_DIR"
 }
+install_theme(){
+    THEME_DIR="$GRUB_DIR/themes/$THEME_NAME"
+    mkdir -p "$THEME_DIR"
+    echo -e "${BLUE}[INFO] Installing orbitux theme..."
+    cp -- "$PROJECT_DIR/theme.txt" "$THEME_DIR/"
+    if [[ -d "$PROJECT_DIR/icons" ]]; then
+        cp -r -- "$PROJECT_DIR/icons" "$THEME_DIR"
+    fi
+    if [[ -f "$PROJECT_DIR/background.png" ]]; then
+        cp -- "$PROJECT_DIR/background.png" "$THEME_DIR/"
+    fi
+    if [[ -f "$PROJECT_DIR/arrow_w.png" ]]; then
+        cp -- "$PROJECT_DIR/arrow_w.png" "$THEME_DIR/"
+    fi
+    if [[ -f "$PROJECT_DIR/orbitux-Regular-22.pf2" ]];then
+        cp -- "$PROJECT_DIR/orbitux-Regular-22.pf2" "$THEME_DIR/"
+    fi
+    echo -e "${GREEN}[OK] Theme intalled."
+}
 main(){
     check_root
     show_banner
@@ -92,6 +111,7 @@ main(){
     ask_confirmation
     detect_grub
     backup_grub
+    install_theme
 }
 
 main "$@"
