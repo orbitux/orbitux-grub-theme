@@ -57,12 +57,26 @@ ask_confirmation(){
             exit 0
     esac
 }
-
+detect_grub(){
+    BLUE='\033[1;34m'
+    GREEN='\033[1;32m'
+    RED='\033[1;31m'
+    echo -e "${BLUE}detecting grub..."
+    if [[ -d /boot/grub ]]; then
+        GRUB_DIR="/boot/grub"
+    elif [[ -d /boot/grub2 ]]; then
+        GRUB_DIR="/boot/grub2"
+    else
+        echo -e "${RED}[ERROR] GRUB directory not found! "
+        exit 1
+    fi
+    echo -e "${GREEN}[OK] GRUB directory : $GRUB_DIR"
+}
 main(){
     check_root
     show_banner
     show_welcome
     ask_confirmation
-
+    detect_grub
 }
 main "$@"
