@@ -17,7 +17,8 @@ BACKUP_DIR=""
 
 check_root(){
     if [[ $EUID -ne 0 ]]; then
-        echo "[ERROR Please run this installer as root]"
+        RED='\033[0;31m'
+        echo -e "${RED} [ERROR] Please run this installer as root"
         exit 1
     fi
 }
@@ -47,6 +48,7 @@ show_welcome(){
 EOF
 }
 ask_confirmation(){
+    
     local answer
     read -rp "Continue? [Y/n]: " answer
     case "$answer" in
@@ -61,5 +63,6 @@ main(){
     show_banner
     show_welcome
     ask_confirmation
+
 }
 main "$@"
