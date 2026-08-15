@@ -17,13 +17,13 @@ BACKUP_DIR=""
 
 check_root(){
     if [[ $EUID -ne 0 ]]; then
-        RED='\033[0;31m'
+        RED='\033[1;31m'
         echo -e "${RED} [ERROR] Please run this installer as root"
         exit 1
     fi
 }
 show_banner(){
-    echo "hello, $(uname -n)!" | figlet
+    echo -e " hello, $(uname -n)!" | figlet
     cat << "EOF"
     =========================================
                 ORBITUX GRUB THEME
@@ -48,12 +48,12 @@ show_welcome(){
 EOF
 }
 ask_confirmation(){
-    
+    RED='\033[1;31m'
     local answer
     read -rp "Continue? [Y/n]: " answer
     case "$answer" in
         [N/n]* )
-            echo "Installation cancelled"
+            echo -e "${RED}Installation cancelled"
             exit 0
     esac
 }
