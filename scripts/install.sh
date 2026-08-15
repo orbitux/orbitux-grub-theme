@@ -114,6 +114,29 @@ configure-grub(){
     fi
     echo -e "${GREEN}[OK] GRUB theme configured"
 }
+update_grub(){
+    echo -e "${ORANGE} Updating GRUB configuration..."
+    if command -v update-grub > /dev/null 2>&1;then
+        update-grub
+    elif command -v grub-mkconfig > /dev/null 2>&1;then
+        grub-mkconfig -o "$GRUB_DIR/grub.cfg"
+    elif command -v grub2-mkconfig > /dev/null 2>&1;then
+        grub2-mkconfig -o "$GRUB_DIR/grub.cfg"
+    else
+        echo -e "${RED}[ERROR] No GRUB configuration generator found."
+        exit 1
+    fi
+    echo -e "${GREEN}[OK] GRUB configuration updated."
+}
+show_end(){
+    echo -e "FINISH!" | figlet
+    cat << "EOF"
+    ============================
+     please reboot your system.
+            ENJOY IT
+    ============================
+EOF
+}
 main(){
     check_root
     show_banner
@@ -123,6 +146,8 @@ main(){
     backup_grub
     install_theme
     configure-grub
+    update-grub
+    show_end
 }
 
 main "$@"
