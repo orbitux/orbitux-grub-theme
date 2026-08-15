@@ -33,7 +33,7 @@ EOF
 }
 show_welcome(){
     cat << "EOF"
-    
+
     This installer will:
 
     • Backup your current GRUB configuration
@@ -43,15 +43,23 @@ show_welcome(){
     • Configure GRUB
 
     • Regenerate grub.cfg
+
 EOF
 }
-
-
-
+ask_confirmation(){
+    local answer
+    read -rp "Continue? [Y/n]: " answer
+    case "$answer" in
+        [N/n]* )
+            echo "Installation cancelled"
+            exit 0
+    esac
+}
 
 main(){
     check_root
     show_banner
     show_welcome
+    ask_confirmation
 }
 main "$@"
