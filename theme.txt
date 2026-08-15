@@ -10,3 +10,17 @@ terminal-right: "0"
 terminal-width: "100%"
 terminal-height: "100%"
 terminal-border: "0"
+
+# Create Boot Menu
++ boot_menu {
+    left = 25%
+    top = 25%
+    width = 45%
+    height = 60%
+
+    item_font = "orbitux-Regular-22"
+    item_color = "#E8EAF0"
+
+    selected_item_color = "#4ef542"
+    item_height = 44
+}
