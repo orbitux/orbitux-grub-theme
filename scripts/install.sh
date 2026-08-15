@@ -104,6 +104,16 @@ install_theme(){
     fi
     echo -e "${GREEN}[OK] Theme intalled."
 }
+configure-grub(){
+    echo -e "${BLUE}configuring grub..."
+    local theme_path="$THEME_DIR/theme.txt"
+    if grep -q '^GRUB_THEME=' "$GRUB_CONFIG"; then
+        sed -i "s|^GRUB_THEME=.*|GRUB_THEME\"$theme_path\"|""${GRUB_CONFIG}"
+    else
+        printf '\nGRUB_THEME="%s"\n' "$theme_path" >> "$GRUB_CONFIG"
+    fi
+    echo -e "${GREEN}[OK] GRUB theme configured"
+}
 main(){
     check_root
     show_banner
@@ -112,6 +122,7 @@ main(){
     detect_grub
     backup_grub
     install_theme
+    configure-grub
 }
 
 main "$@"
