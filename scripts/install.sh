@@ -21,7 +21,23 @@ check_root(){
         exit 1
     fi
 }
+show_banner(){
+    figlet -f slant "ORBITUX GRUB"
+    cat << "EOF"
+    =========================================
+                ORBITUX GRUB THEME
+                    Installer
+                     v 0.3.0
+    ========================================= 
+EOF
+}
+
+
+
+
+
 main(){
     check_root
+    show_banner
 }
 main "$@"
