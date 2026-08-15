@@ -22,7 +22,7 @@ check_root(){
     fi
 }
 show_banner(){
-    figlet -f slant "ORBITUX GRUB"
+    echo "hello, $(uname -n)!" | figlet
     cat << "EOF"
     =========================================
                 ORBITUX GRUB THEME
