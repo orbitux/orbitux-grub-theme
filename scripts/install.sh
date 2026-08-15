@@ -14,3 +14,14 @@ readonly THEME_NAME="orbitux"
 GRUB_DIR=""
 THEME_DIR=""
 BACKUP_DIR=""
+
+check_root(){
+    if [[ $EUID -ne 0 ]]; then
+        echo "[ERROR Please run this installer as root]"
+        exit 1
+    fi
+}
+main(){
+    check_root
+}
+main "$@"
