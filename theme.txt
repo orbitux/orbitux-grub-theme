@@ -22,5 +22,8 @@ terminal-border: "0"
     item_color = "#E8EAF0"
 
     selected_item_color = "#4ef542"
+    selected_item_pixmap_style = "arrow_*.png"
+    icon_width = 30
+    icon_height = 30
     item_height = 44
 }
