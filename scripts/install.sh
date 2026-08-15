@@ -31,7 +31,20 @@ show_banner(){
     ========================================= 
 EOF
 }
+show_welcome(){
+    cat << "EOF"
+    
+    This installer will:
 
+    • Backup your current GRUB configuration
+
+    • Install Orbitux Theme
+
+    • Configure GRUB
+
+    • Regenerate grub.cfg
+EOF
+}
 
 
 
@@ -39,5 +52,6 @@ EOF
 main(){
     check_root
     show_banner
+    show_welcome
 }
 main "$@"
