@@ -38,3 +38,12 @@ terminal-border: "0"
     color = "#FFFFFF"
     align = "left"
 }
+# Boot Countdown progress
++ label {
+    id = "__timeout__"
+    text = "Booting in %d seconds"
+    left = 25%
+    top = 95%
+    width = 30%
+    color = "#FFFFFFcd"
+}
