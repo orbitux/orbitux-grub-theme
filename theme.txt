@@ -1,0 +1,49 @@
+# orbitux grub theme
+# v0.3.0
+# Main Settings
+title-text: "WELCOME TO GRUB"
+desktop-image:"background.png"
+title-color: "#FFFFFF"
+terminal-font: "Unifont Regular 16"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+# Create Boot Menu
++ boot_menu {
+    left = 25%
+    top = 25%
+    width = 45%
+    height = 60%
+
+    item_font = "orbitux-Regular-22"
+    item_color = "#E8EAF0"
+
+    selected_item_color = "#4ef542"
+    selected_item_pixmap_style = "arrow_*.png"
+    icon_width = 30
+    icon_height = 30
+    item_height = 44
+}
+# Header Label
++ label {
+    text = "ORBITUX GRUB"
+    left = 5%
+    top = 5%
+    width = 500
+    height = 80
+    font = "orbitux-Regular-22"
+    color = "#FFFFFF"
+    align = "left"
+}
+# Boot Countdown progress
++ label {
+    id = "__timeout__"
+    text = "Booting in %d seconds"
+    left = 25%
+    top = 95%
+    width = 30%
+    color = "#FFFFFFcd"
+}
