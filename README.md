@@ -83,16 +83,17 @@ Background images and operating system icons can also be replaced with your own 
 
 Project Structure
 orbitux-grub-theme/
-├── arrow_w.png
-├── background.png
-├── icons/
-│   ├── gnu-linux.png
-│   ├── manjaro.png
-│   ├── pop.png
-│   └── windows.png
-├── LICENSE
-├── orbitux-Regular-22.pf2
-└── theme.txt
+ arrow_w.png
+ background.png
+ icons/
+    gnu-linux.png
+    manjaro.png
+    pop.png
+    windows.png
+ LICENSE
+ orbitux-Regular-22.pf2
+ theme.txt
+ 
 Compatibility
 
 Orbitux has been tested in multiple Linux environments and with different GRUB configurations.
