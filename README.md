@@ -17,7 +17,7 @@ Features
 
 Preview
 
-./screenshot.png
+![alt text](https://raw.githubusercontent.com/orbitux/orbitux-grub-theme/c485bb8dc360422f1c1f514dccf43de7a4f65e42/screenshot.png)
 
 Installation
 
