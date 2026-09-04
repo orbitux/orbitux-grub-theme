@@ -85,6 +85,58 @@ backup_grub(){
     echo -e "${GREEN}[OK] Backup created: ${RESET_COLOR}"
     echo -e "Backup directory: ${ORANGE}$BACKUP_DIR"
 }
+install_theme(){
+    THEME_DIR="$GRUB_DIR/themes/$THEME_NAME"
+    mkdir -p "$THEME_DIR"
+    echo -e "${BLUE}[INFO] Installing orbitux theme..."
+    cp -- "$PROJECT_DIR/theme.txt" "$THEME_DIR/"
+    if [[ -d "$PROJECT_DIR/icons" ]]; then
+        cp -r -- "$PROJECT_DIR/icons" "$THEME_DIR"
+    fi
+    if [[ -f "$PROJECT_DIR/background.png" ]]; then
+        cp -- "$PROJECT_DIR/background.png" "$THEME_DIR/"
+    fi
+    if [[ -f "$PROJECT_DIR/arrow_w.png" ]]; then
+        cp -- "$PROJECT_DIR/arrow_w.png" "$THEME_DIR/"
+    fi
+    if [[ -f "$PROJECT_DIR/orbitux-Regular-22.pf2" ]];then
+        cp -- "$PROJECT_DIR/orbitux-Regular-22.pf2" "$THEME_DIR/"
+    fi
+    echo -e "${GREEN}[OK] Theme intalled."
+}
+configure-grub(){
+    echo -e "${BLUE}configuring grub..."
+    local theme_path="$THEME_DIR/theme.txt"
+    if grep -q '^GRUB_THEME=' "$GRUB_CONFIG"; then
+        sed -i "s|^GRUB_THEME=.*|GRUB_THEME\"$theme_path\"|""${GRUB_CONFIG}"
+    else
+        printf '\nGRUB_THEME="%s"\n' "$theme_path" >> "$GRUB_CONFIG"
+    fi
+    echo -e "${GREEN}[OK] GRUB theme configured"
+}
+update_grub(){
+    echo -e "${ORANGE} Updating GRUB configuration..."
+    if command -v update-grub > /dev/null 2>&1;then
+        update-grub
+    elif command -v grub-mkconfig > /dev/null 2>&1;then
+        grub-mkconfig -o "$GRUB_DIR/grub.cfg"
+    elif command -v grub2-mkconfig > /dev/null 2>&1;then
+        grub2-mkconfig -o "$GRUB_DIR/grub.cfg"
+    else
+        echo -e "${RED}[ERROR] No GRUB configuration generator found."
+        exit 1
+    fi
+    echo -e "${GREEN}[OK] GRUB configuration updated."
+}
+show_end(){
+    echo -e "FINISH!" | figlet
+    cat << "EOF"
+    ============================
+     please reboot your system.
+            ENJOY IT
+    ============================
+EOF
+}
 main(){
     check_root
     show_banner
@@ -92,6 +144,10 @@ main(){
     ask_confirmation
     detect_grub
     backup_grub
+    install_theme
+    configure-grub
+    update-grub
+    show_end
 }
 
 main "$@"
